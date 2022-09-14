@@ -1,55 +1,55 @@
 ## CodedEnum
 
-**Описание:**
+**Description:**
 
-Расширяет возможности создания перечислений в виде кодификаторов (словарей, 
-справочников и т.п.).
+Extends availability of enumerations creation lik vocabulary, codifiers and 
+etc. (code -> value format)
 
 ```python
 import CodedEnum
 
 
 class WeekDays(CodedEnum):
-    MONDAY = 1, "Понедельник"
-    TUESDAY = 2, "Вторник"
-    WEDNESDAY = 3, "Среда"
-    THURSDAY = 4, "Четверг"
-    FRIDAY = 5, "Пятница"
-    SATURDAY = 6, "Суббота"
-    SUNDAY = 7, "Воскресенье"
+    MONDAY = 1, "Monday"
+    TUESDAY = 2, "Tuesday"
+    WEDNESDAY = 3, "Wednesday"
+    THURSDAY = 4, "Thursday"
+    FRIDAY = 5, "Friday"
+    SATURDAY = 6, "Saturday"
+    SUNDAY = 7, "Sunday"
 ```
 
-Обращение к элементам перечисления:
+Appealing to enumeration elements:
 ```shell
 >> WeekDays.THURSDAY.name
 'THURSDAY'
 >> WeekDays.THURSDAY.value
 4
 >> WeekDays.THURSDAY.term
-'Четверг'
+'Thursday'
 ```
 
-Проверка наличия значения в перечислении:
+Checking of value existing:
 ```shell
 >> 4 in WeekDays
 True
 >> 8 in WeekDays
 False
->> "Среда" in WeekDays
+>> "Wednesday" in WeekDays
 True
->> "Январь" in WeekDays
+>> "January" in WeekDays
 False
 ```
 
-Получение элемента по строковому представлению:
+Getting element by string value:
 ```shell
->> friday = WeekDays["Пятница"]
+>> friday = WeekDays["Friday"]
 >> type(friday)
 <enum 'WeekDays'>
 >> friday.name
 'FRIDAY'
 ```
-Получение элемента по числовому представлению:
+Getting element by code value:
 ```shell
 >> tuesday = WeekDays[2]
 >> type(tuesday)
@@ -57,22 +57,23 @@ False
 >> tuesday.name
 'TUESDAY'
 ```
-Получение отсутствующего элемента:
+Getting of missed element:
 ```shell
 >> missed_element = WeekDays["Март"]
 >> type(missed_element)
 <class 'NoneType'>
 ```
 
-Сравнение элементов перечисления, в т.ч. с другими объектами:<br>
-__Строки возможно сравнить только на эквивалентность элементу перечисления. 
-Для чисел доступны все виды сравнения.__
+
+Comparison of enumeration elements, including with other objects:<br>
+__Only equal comparison available for string elements. 
+For integers available all comparison types.__
 ```shell
->> "Пятница" == WeekDays.FRIDAY
+>> "Friday" == WeekDays.FRIDAY
 True
->> "Четверг" == WeekDays.FRIDAY
+>> "Thursday" == WeekDays.FRIDAY
 False
->> "Четверг" < WeekDays.FRIDAY
+>> "Thursday" < WeekDays.FRIDAY
 TypeError("Cannot compare with type <class 'str'>")
 >> 5 >= WeekDays.FRIDAY
 True
@@ -80,7 +81,7 @@ True
 False
 ```
 
-Приведение типов:
+Cast:
 ```shell
 >> sunday_str = str(WeekDays.SUNDAY)
 >> type(sunday_str)
@@ -96,15 +97,14 @@ False
 1
 ```
 
-Дополнительные методы преобразования:
-* `as_dict` &ndash; к словарю с сохранением имен ключей
+Additional cast methods:
+* `as_dict` &ndash; to dict with saving key names
 ```shell
 >> WeekDays.WEDNESDAY.as_dict
-{'value': 3, 'term': 'Среда'}
+{'value': 3, 'term': 'Thursday'}
 ```
-* `to_frontend` &ndash; к словарю для фронт-енда в виде элемента выпадающего 
-списка
+* `to_frontend` &ndash; to dict for frontend as fall down list
 ```shell
 >> WeekDays.WEDNESDAY.to_frontend
-{'id': 3, 'name': 'Среда'}
+{'id': 3, 'name': 'Thursday'}
 ```
