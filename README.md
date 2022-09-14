@@ -5,6 +5,9 @@
 Extends availability of enumerations creation lik vocabulary, codifiers and 
 etc. (code -> value format)
 
+
+**Using:**
+
 ```python
 import CodedEnum
 
